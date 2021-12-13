@@ -5,7 +5,7 @@ import java.util.Random;
 public class Enemy extends GameObject {
     Handler handler;
 
-    public Enemy(int x, int y, ID id, String direction, long lastTurn, Handler handler, boolean isHit) {
+    public Enemy(int x, int y, ID id, String direction, long lastTurn, Handler handler, int isHit) {
         super(x, y, id);
         this.handler = handler;
         this.direction = direction;
@@ -22,7 +22,7 @@ public class Enemy extends GameObject {
         y += velY;
         x = Game.clamp(x, 0, Game.WIDTH - 47);
         y = Game.clamp(y, 0, Game.HEIGHT - 70);
-        if (System.currentTimeMillis() - lastTurn >= 2000) {
+        if (System.currentTimeMillis() - lastTurn >= 1200) {
             if (new Random().nextInt(4) == 0) {
                 this.velY = -3;
                 this.direction = "north";
@@ -39,7 +39,7 @@ public class Enemy extends GameObject {
                 this.velX = -3;
                 this.direction = "west";
             }
-            if (new Random().nextInt(10) >= 3) {
+            if (new Random().nextInt(10) >= 1) {
                 switch (this.direction) {
                     case "north" -> tempObject(this.direction).setVelY(-5);
                     case "south" -> tempObject(this.direction).setVelY(5);
@@ -78,7 +78,7 @@ public class Enemy extends GameObject {
             if (tempObject.getId() == ID.Bullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     handler.removeObject(tempObject);
-                    isHit = true;
+                    isHit++;
                 }
             }
             if (tempObject.getId() == ID.Brick) {
@@ -90,7 +90,7 @@ public class Enemy extends GameObject {
         }
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
-            if (tempObject.getId() == ID.Enemy && tempObject.isHit()) {
+            if (tempObject.getId() == ID.Enemy && tempObject.isHit >= 3) {
                 handler.object.remove(i);
             }
         }

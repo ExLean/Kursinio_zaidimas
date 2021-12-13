@@ -55,14 +55,13 @@ public class Menu extends MouseAdapter {
             g.drawString("GAME OVER", 190, Game.HEIGHT / 2 - 32);
 
             g.setFont(fnt2);
-            g.drawString("Try again?", 445, 420);
+            g.drawString("Play again?", 440, 420);
             g.drawRect(430, 390, 180, 40);
         }
 
     }
 
     public void tick() {
-
     }
 
     public void mousePressed(MouseEvent e) {
@@ -107,14 +106,14 @@ public class Menu extends MouseAdapter {
 
     public void loadGame() {
         handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler, "north"));
-        handler.addObject(new Enemy(0, 0, ID.Enemy, "north", System.currentTimeMillis(), handler, false));
-        handler.addObject(new Enemy(480, 0, ID.Enemy, "north", System.currentTimeMillis(), handler, false));
-        handler.addObject(new Enemy(0, 640, ID.Enemy, "north", System.currentTimeMillis(), handler, false));
-        handler.addObject(new Enemy(480, 640, ID.Enemy, "north", System.currentTimeMillis(), handler, false));
+        handler.addObject(new Enemy(0, 0, ID.Enemy, "north", System.currentTimeMillis(), handler, 0));
+        handler.addObject(new Enemy(480, 0, ID.Enemy, "north", System.currentTimeMillis(), handler, 0));
+        handler.addObject(new Enemy(0, 640, ID.Enemy, "north", System.currentTimeMillis(), handler, 0));
+        handler.addObject(new Enemy(480, 640, ID.Enemy, "north", System.currentTimeMillis(), handler, 0));
         for (int i = 0; i < Game.map.length; i++) {
             for (int j = 0; j < Game.map[0].length; j++) {
                 if (Game.map[i][j] == 1) {
-                    handler.addObject(new Brick(j * 32, i * 32, ID.Brick, handler, false));
+                    handler.addObject(new Brick(j * 32, i * 32, ID.Brick, handler, 0));
                 }
             }
         }

@@ -17,10 +17,12 @@ public class HUD {
         g.drawRect(15, 15, 198, 32);
     }
 
+    // public static int getHEALTH()
     public static int getHEALTH() {
         return HEALTH;
     }
 
+    // public static void setHEALTH(int HEALTH)
     public static void setHEALTH(int HEALTH) {
         HUD.HEALTH = HEALTH;
     }

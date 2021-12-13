@@ -6,7 +6,7 @@ public abstract class GameObject {
     protected int velX, velY;
     protected String direction;
     protected long lastTurn;
-    protected boolean isHit;
+    protected int isHit;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -18,11 +18,11 @@ public abstract class GameObject {
     public abstract void render(Graphics g);
     public abstract Rectangle getBounds();
 
-    public boolean isHit() {
+    public int isHit() {
         return isHit;
     }
 
-    public void setHit(boolean hit) {
+    public void setHit(int hit) {
         isHit = hit;
     }
 
